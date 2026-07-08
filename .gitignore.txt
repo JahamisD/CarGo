@@ -1,0 +1,23 @@
+# Java / Spring Boot
+target/
+*.class
+*.jar
+*.war
+
+# IntelliJ / Eclipse
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# React
+node_modules/
+build/
+
+# Environment files
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
