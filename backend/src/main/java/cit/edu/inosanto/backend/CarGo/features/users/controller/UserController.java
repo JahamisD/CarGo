@@ -1,8 +1,11 @@
-package cit.edu.inosanto.backend.CarGo.features.users;
+package cit.edu.inosanto.backend.CarGo.features.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import cit.edu.inosanto.backend.CarGo.features.users.entity.User;
+import cit.edu.inosanto.backend.CarGo.features.users.repository.UserRepository;
 
 import java.util.Map;
 
@@ -15,6 +18,10 @@ public class UserController {
 
     @PostMapping("/register")
     public User register(@RequestBody User newUser) {
+
+        // Every newly registered user is a CUSTOMER
+        newUser.setRole("CUSTOMER");
+
         return userRepository.save(newUser);
     }
 
@@ -36,7 +43,6 @@ public class UserController {
         }
 
         return ResponseEntity.ok(
-                Map.of("user", user)
-        );
+                Map.of("user", user));
     }
 }

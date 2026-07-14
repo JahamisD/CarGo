@@ -1,4 +1,4 @@
-package cit.edu.inosanto.backend.CarGo.features.users;
+package cit.edu.inosanto.backend.CarGo.features.users.entity;
 
 import jakarta.persistence.*;
 
@@ -8,20 +8,20 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userID;
+    private Long userId;
 
     private String firstName;
-    private String middleName;
     private String lastName;
     private String email;
     private String password;
+    private String role;
 
-    public Long getUserID() {
-        return userID;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUserID(Long userID) {
-        this.userID = userID;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getFirstName() {
@@ -30,14 +30,6 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -64,6 +56,12 @@ public class User {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
 
+    public void setRole(String role) {
+        this.role = role;
+    }
 
 }

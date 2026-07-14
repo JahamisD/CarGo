@@ -40,6 +40,7 @@ function App() {
           <Route path="/my-bookings" element={<MyBookings user={user} />} />
           <Route path="/my-cars" element={<MyCars user={user} />} />
           <Route path="/my-cars/new" element={<AddCar user={user} />} />
+
         </Routes>
       </div>
     </BrowserRouter>

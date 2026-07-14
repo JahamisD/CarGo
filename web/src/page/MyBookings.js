@@ -1,86 +1,104 @@
 import React, { useEffect, useState } from 'react';
 import API_URL from '../apiUrl';
 
-export default function MyBookings(props) {
-  const user = props.user;
+export default function MyBookings({ user }) {
+
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
-      loadBookings();
+
+    console.log("User inside MyBookings:", user);
+
+    if (!user) {
+        return;
     }
-    // eslint-disable-next-line
+
+    fetch(API_URL + "/bookings/user/" + user.userId)
+
+    fetch(API_URL + "/bookings/user/" + user.userId)
+  .then((res) => res.json())
+  .then((data) => {
+    console.log(data);
+
+    setBookings(Array.isArray(data) ? data : []);
+
+    setLoading(false);
+  })
+  .catch((err) => {
+    console.log(err);
+    setLoading(false);
+  });
+
   }, [user]);
 
-  function loadBookings() {
-    setLoading(true);
-    fetch(API_URL + "/bookings/customer/" + user.userId)
-      .then((res) => res.json())
-      .then((data) => {
-        setBookings(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }
-
-  function cancelBooking(bookingId) {
-    fetch(API_URL + "/bookings/" + bookingId + "/status", {
-      method: 'PATCH',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bookingStatus: 'CANCELLED' })
-    })
-      .then(() => {
-        loadBookings(); // just refresh the list after cancelling
-      })
-      .catch((err) => console.log(err));
-  }
 
   if (!user) {
-    return <div className="container py-4"><p>Please log in first.</p></div>;
+    return (
+      <div className="container py-4">
+        <h3>Please login first</h3>
+      </div>
+    );
   }
+
 
   return (
     <div className="container py-4">
-      <h2 className="mb-3">My Bookings</h2>
 
-      {loading && <p>Loading...</p>}
+      <h2>My Bookings</h2>
 
-      {!loading && bookings.length === 0 && <p>You have no bookings yet.</p>}
+      {loading && <p>Loading bookings...</p>}
 
-      {!loading && bookings.length > 0 && (
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Car</th>
-              <th>Start Date</th>
-              <th>End Date</th>
-              <th>Status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((b) => (
-              <tr key={b.bookingId}>
-                <td>{b.car.brand} {b.car.model}</td>
-                <td>{b.startDate}</td>
-                <td>{b.endDate}</td>
-                <td><span className="badge bg-secondary">{b.bookingStatus}</span></td>
-                <td>
-                  {(b.bookingStatus === 'PENDING' || b.bookingStatus === 'CONFIRMED') && (
-                    <button className="btn btn-sm btn-outline-danger" onClick={() => cancelBooking(b.bookingId)}>
-                      Cancel
-                    </button>
-                  )}
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+      {!loading && bookings.length === 0 && (
+        <p>No bookings found.</p>
       )}
+
+
+      <div className="row g-3">
+
+        {bookings.map((booking) => (
+
+          <div className="col-md-6" key={booking.bookId}>
+
+            <div className="card shadow-sm">
+
+              <div className="card-body">
+
+                <h5>
+                  {booking.car.carBrand} {booking.car.carName}
+                </h5>
+
+                <p>
+                  <strong>Start:</strong>{" "}
+                  {booking.bookingDateStart}
+                </p>
+
+                <p>
+                  <strong>End:</strong>{" "}
+                  {booking.bookingDateEnd}
+                </p>
+
+                <p>
+                  <strong>Status:</strong>{" "}
+                  {booking.status}
+                </p>
+
+                <p>
+                  <strong>Price:</strong>{" "}
+                  ${booking.car.carPrice}/day
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
+
     </div>
   );
 }

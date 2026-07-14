@@ -1,4 +1,4 @@
-package cit.edu.inosanto.backend.CarGo.features.cars;
+package cit.edu.inosanto.backend.CarGo.features.cars.entity;
 
 import jakarta.persistence.*;
 
@@ -16,6 +16,7 @@ public class Cars {
     private String carBrand;
     private String carOwner;
     private BigDecimal carPrice;
+    private String plateNumber;
 
     public BigDecimal getCarPrice() {
         return carPrice;
@@ -26,18 +27,21 @@ public class Cars {
     }
 
 
-
-
     public Long getCarId() {
         return carId;
     }
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
+    public void setCarId(Long carId) { this.carId = carId;
     }
 
-    public String getCarName() {
-        return carName;
+    public String getCarName() { return carName;
+    }
+
+
+    public String getPlateNumber() { return plateNumber;
+    }
+
+    public void setPlateNumber(String plateNumber) { this.plateNumber = plateNumber;
     }
 
     public void setCarName(String carName) {

@@ -1,27 +1,12 @@
-package cit.edu.inosanto.backend.CarGo.features.bookings;
-
-import jakarta.persistence.*;
+package cit.edu.inosanto.backend.CarGo.features.bookings.dto;
 
 import java.time.LocalDate;
 
-@Entity
-@Table( name = "bookings")
-public class Booking {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookId;
+public class BookingResponse {
     private LocalDate bookingDateStart;
     private LocalDate bookingDateEnd;
-    private String payment; // dropdown
-    private String status; // pending, cancelled, confirmed
-
-    public Long getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(Long bookId) {
-        this.bookId = bookId;
-    }
+    private String payment;
+    private String status;
 
     public LocalDate getBookingDateStart() {
         return bookingDateStart;
@@ -54,5 +39,4 @@ public class Booking {
     public void setStatus(String status) {
         this.status = status;
     }
-
 }

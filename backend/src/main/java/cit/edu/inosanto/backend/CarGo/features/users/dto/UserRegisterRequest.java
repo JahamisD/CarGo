@@ -1,4 +1,4 @@
-package cit.edu.inosanto.backend.CarGo.features.users;
+package cit.edu.inosanto.backend.CarGo.features.users.dto;
 
 public class UserRegisterRequest {
     private String firstName;

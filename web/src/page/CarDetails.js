@@ -10,7 +10,6 @@ export default function CarDetails(props) {
   const [car, setCar] = useState(null);
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
-  const [msg, setMsg] = useState('');
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -20,20 +19,21 @@ export default function CarDetails(props) {
       .catch((err) => console.log(err));
   }, [carId]);
 
-  // quick math to figure out the total price, not the cleanest but it works
   let days = 0;
   if (startDate && endDate) {
     const start = new Date(startDate);
     const end = new Date(endDate);
+
     days = Math.round((end - start) / (1000 * 60 * 60 * 24));
+
     if (days < 1) days = 0;
   }
-  const total = car ? days * car.pricePerDay : 0;
+
+  const total = car ? days * car.carPrice : 0;
 
   function bookCar(e) {
     e.preventDefault();
     setError('');
-    setMsg('');
 
     if (!user) {
       navigate('/login');
@@ -46,23 +46,27 @@ export default function CarDetails(props) {
     }
 
     fetch(API_URL + "/bookings", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        customerId: user.userId,
-        carId: car.carId,
-        startDate: startDate,
-        endDate: endDate
-      })
-    })
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    customerId: user.userId,
+    carId: car.carId,
+    startDate: startDate,
+    endDate: endDate
+  })
+})  
       .then((res) => {
         if (!res.ok) {
-          return res.json().then((data) => { throw new Error(data.message) });
+          return res.json().then((data) => {
+            throw new Error(data.message);
+          });
         }
+
         return res.json();
       })
       .then(() => {
-        setMsg('Booked! Go check My Bookings to see it.');
+        alert("Booked Successfully");
+        navigate('/cars');
       })
       .catch((err) => {
         setError(err.message);
@@ -77,13 +81,19 @@ export default function CarDetails(props) {
     <div className="container py-4">
       <div className="row g-4">
         <div className="col-md-6">
-          <h2>{car.brand} {car.model} ({car.year})</h2>
+          <h2>{car.carBrand} {car.carName}</h2>
+
           <ul className="list-group mb-3">
-            <li className="list-group-item">Color: {car.color}</li>
-            <li className="list-group-item">Plate Number: {car.plateNumber}</li>
-            <li className="list-group-item">Price per day: ${car.pricePerDay}</li>
             <li className="list-group-item">
-              {car.availability ? 'Available' : 'Not available right now'}
+              <strong>Owner:</strong> {car.carOwner}
+            </li>
+
+            <li className="list-group-item">
+              <strong>Details:</strong> {car.carDetails}
+            </li>
+
+            <li className="list-group-item">
+              <strong>Price per day:</strong> ${car.carPrice}
             </li>
           </ul>
         </div>
@@ -93,25 +103,42 @@ export default function CarDetails(props) {
             <div className="card-body">
               <h5 className="card-title">Book this car</h5>
 
-              {msg && <div className="alert alert-success">{msg}</div>}
-              {error && <div className="alert alert-danger">{error}</div>}
+              {error && (
+                <div className="alert alert-danger">
+                  {error}
+                </div>
+              )}
 
               <form onSubmit={bookCar}>
                 <div className="mb-3">
                   <label className="form-label">Start Date</label>
-                  <input type="date" className="form-control" value={startDate} onChange={(e) => setStartDate(e.target.value)} required />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={startDate}
+                    onChange={(e) => setStartDate(e.target.value)}
+                    required
+                  />
                 </div>
 
                 <div className="mb-3">
                   <label className="form-label">End Date</label>
-                  <input type="date" className="form-control" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
+                  <input
+                    type="date"
+                    className="form-control"
+                    value={endDate}
+                    onChange={(e) => setEndDate(e.target.value)}
+                    required
+                  />
                 </div>
 
                 {days > 0 && (
-                  <p>{days} day(s) x ${car.pricePerDay} = <b>${total}</b></p>
+                  <p>
+                    {days} day(s) × ${car.carPrice} = <b>${total}</b>
+                  </p>
                 )}
 
-                <button className="btn btn-primary w-100" type="submit" disabled={!car.availability}>
+                <button className="btn btn-primary w-100" type="submit">
                   Confirm Booking
                 </button>
               </form>

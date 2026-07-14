@@ -1,10 +1,11 @@
-package cit.edu.inosanto.backend.CarGo.features.cars;
+package cit.edu.inosanto.backend.CarGo.features.cars.controller;
 
-import cit.edu.inosanto.backend.CarGo.features.cars.Cars;
+import cit.edu.inosanto.backend.CarGo.features.cars.entity.Cars;
+import cit.edu.inosanto.backend.CarGo.features.cars.repository.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import cit.edu.inosanto.backend.CarGo.features.cars.CarRepository;
+
 import java.util.List;
 
 @RestController

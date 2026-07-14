@@ -56,21 +56,34 @@ export default function Cars() {
       {!loading && cars.length === 0 && <p>No cars found.</p>}
 
       <div className="row g-3">
-        {cars.map((car) => (
-          <div className="col-12 col-md-6 col-lg-4" key={car.carId}>
-            <div className="card h-100 shadow-sm">
-              <div className="card-body">
-                <h5 className="card-title">{car.brand} {car.model}</h5>
-                <h6 className="card-subtitle mb-2 text-muted">{car.year} - {car.color}</h6>
-                <p className="card-text fw-bold">${car.pricePerDay} / day</p>
-                <Link to={"/cars/" + car.carId} className="btn btn-outline-primary btn-sm">
+  {cars.map((car) => (
+    <div className="col-12 col-md-6 col-lg-4" key={car.carId}>
+      <div className="card h-100 shadow-sm">
+        <div className="card-body">
+          <h5 className="card-title">
+            {car.carBrand} {car.carName}
+          </h5>
+
+          <h6 className="card-subtitle mb-2 text-muted">
+            Owner: {car.carOwner}
+          </h6>
+
+          <p className="card-text">
+            {car.carDetails}
+          </p>
+
+          <p className="card-text fw-bold">
+            ${car.carPrice} / day
+          </p>
+
+          <Link to={"/cars/" + car.carId} className="btn btn-outline-primary btn-sm">
                   View Details
                 </Link>
-              </div>
-            </div>
-          </div>
-        ))}
+        </div>
       </div>
+    </div>
+  ))}
+</div>
     </div>
   );
 }
