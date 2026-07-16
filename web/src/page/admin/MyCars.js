@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import API_URL from '../apiUrl';
+import API_URL from '../../apiUrl';
 
 export default function MyCars(props) {
   const user = props.user;

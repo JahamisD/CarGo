@@ -7,6 +7,7 @@ import cit.edu.inosanto.backend.CarGo.features.users.entity.User;
 import cit.edu.inosanto.backend.CarGo.features.users.repository.UserRepository;
 import cit.edu.inosanto.backend.CarGo.features.cars.entity.Cars;
 import cit.edu.inosanto.backend.CarGo.features.cars.repository.CarRepository;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +47,32 @@ public class BookingController {
     @GetMapping("/user/{userId}")
     public List<Booking> getUserBookings(@PathVariable Long userId) {
         return bookingRepository.findByUserUserId(userId);
+    }
+
+    @GetMapping("/pending")
+    public List<Booking> getPendingBookings() {
+
+        return bookingRepository.findByStatus("PENDING");
+
+    }
+
+
+    @PutMapping("/{id}/status")
+    public Booking updateBookingStatus(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> request
+    ) {
+
+        Booking booking = bookingRepository.findById(id).orElse(null);
+
+        if (booking == null) {
+            return null;
+        }
+
+
+        booking.setStatus(request.get("status"));
+
+        return bookingRepository.save(booking);
+
     }
 }

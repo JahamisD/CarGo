@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import API_URL from '../apiUrl';
+import API_URL from '../../apiUrl';
 
 export default function Login(props) {
   const navigate = useNavigate();
@@ -26,8 +26,13 @@ export default function Login(props) {
         return data;
       })
       .then((data) => {
-        props.handleLogin(data.user);
-        navigate('/cars');
+         props.handleLogin(data.user);
+          if(data.user.role === "ADMIN"){
+              navigate('/admin');
+          }
+          else{
+             navigate('/cars');
+          }
       })
       .catch((err) => {
         setError(err.message);

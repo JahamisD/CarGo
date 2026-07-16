@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import API_URL from '../apiUrl';
+import API_URL from '../../apiUrl';
 
 export default function MyBookings({ user }) {
 
@@ -13,8 +13,6 @@ export default function MyBookings({ user }) {
     if (!user) {
         return;
     }
-
-    fetch(API_URL + "/bookings/user/" + user.userId)
 
     fetch(API_URL + "/bookings/user/" + user.userId)
   .then((res) => res.json())

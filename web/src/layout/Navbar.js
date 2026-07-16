@@ -5,9 +5,10 @@ export default function Navbar(props) {
   const user = props.user;
   const navigate = useNavigate();
 
-  function logoutClick() {
+  function logoutClick(){
     props.handleLogout();
-    navigate('/login');
+    alert("Logged out successfully");
+    navigate('/cars', { replace: true });
   }
 
   return (
@@ -16,7 +17,15 @@ export default function Navbar(props) {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/cars">CarGo</Link>
 
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button 
+            className="navbar-toggler" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarSupportedContent" 
+            aria-controls="navbarSupportedContent" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation"
+          >
             <span className="navbar-toggler-icon"></span>
           </button>
 
@@ -26,15 +35,10 @@ export default function Navbar(props) {
                 <Link className="nav-link" to="/cars">Browse Cars</Link>
               </li>
 
-              {/* only show these links if someone is logged in */}
+              {/* only show My Bookings if someone is logged in */}
               {user && (
                 <li className="nav-item">
                   <Link className="nav-link" to="/my-bookings">My Bookings</Link>
-                </li>
-              )}
-              {user && (
-                <li className="nav-item">
-                  <Link className="nav-link" to="/my-cars">My Cars</Link>
                 </li>
               )}
             </ul>
@@ -42,12 +46,21 @@ export default function Navbar(props) {
             {user ? (
               <div>
                 <span className="text-white me-2">Hi, {user.firstName}</span>
-                <button className="btn btn-outline-light btn-sm" onClick={logoutClick}>Logout</button>
+                <button 
+                  className="btn btn-outline-light btn-sm" 
+                  onClick={logoutClick}
+                >
+                  Logout
+                </button>
               </div>
             ) : (
               <div>
-                <Link className="btn btn-outline-light btn-sm me-2" to="/login">Login</Link>
-                <Link className="btn btn-light btn-sm" to="/register">Register</Link>
+                <Link className="btn btn-outline-light btn-sm me-2" to="/login">
+                  Login
+                </Link>
+                <Link className="btn btn-light btn-sm" to="/register">
+                  Register
+                </Link>
               </div>
             )}
           </div>
