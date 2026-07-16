@@ -9,6 +9,7 @@ import CarDetails from './page/cars/CarDetails';
 import Login from './page/auth/Login';
 import Register from './page/auth/Register';
 import MyBookings from './page/booking/MyBookings';
+import CarManagement from './page/admin/CarManagement';
 
 import MyCars from './page/admin/MyCars';
 import AddCar from './page/admin/AddCar';
@@ -116,7 +117,25 @@ function AppContent({ user, handleLogin, handleLogout }) {
           element={
             user?.role === "ADMIN"
             ?
-            <AddCar user={user}/>
+            <CarManagement
+              user={user}
+              handleLogout={handleLogout}
+            />
+            :
+            <Navigate to="/cars"/>
+          }
+        />
+
+        {/* ADMIN ADD CAR */}
+        <Route 
+          path="/admin/cars/new" 
+          element={
+            user?.role === "ADMIN"
+            ?
+            <AddCar
+              user={user}
+              handleLogout={handleLogout}
+            />
             :
             <Navigate to="/cars"/>
           }

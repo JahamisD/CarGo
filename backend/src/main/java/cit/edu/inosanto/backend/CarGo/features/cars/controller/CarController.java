@@ -15,18 +15,30 @@ public class CarController {
     @Autowired
     private CarRepository carRepository;
 
+
     @PostMapping("/cars")
     public Cars createCar(@RequestBody Cars newCar) {
         return carRepository.save(newCar);
     }
+
 
     @GetMapping("/cars")
     public List<Cars> getCars() {
         return carRepository.findAll();
     }
 
+
     @GetMapping("/cars/{id}")
     public Cars getCar(@PathVariable Long id) {
         return carRepository.findById(id).orElse(null);
     }
+
+
+    @DeleteMapping("/cars/{id}")
+    public void deleteCar(@PathVariable Long id) {
+
+        carRepository.deleteById(id);
+
+    }
+
 }

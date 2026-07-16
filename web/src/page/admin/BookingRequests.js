@@ -8,7 +8,7 @@ export default function BookingRequests({ user, handleLogout }) {
     const [loading, setLoading] = useState(true);
 
 
-    function loadBookings(){
+    function loadBookings() {
         setLoading(true);
         fetch(API_URL + "/bookings/pending")
             .then((res) => res.json())
@@ -27,7 +27,7 @@ export default function BookingRequests({ user, handleLogout }) {
         loadBookings();
     }, []);
 
-    function updateStatus(id, status){
+    function updateStatus(id, status) {
         fetch(API_URL + "/bookings/" + id + "/status", {
             method: "PUT",
             headers: {
@@ -37,20 +37,20 @@ export default function BookingRequests({ user, handleLogout }) {
                 status: status
             })
         })
-        .then((res) => res.json())
-        .then(() => {
+            .then((res) => res.json())
+            .then(() => {
 
-            alert(
-                status === "CONFIRMED"
-                ? "Booking confirmed"
-                : "Booking rejected"
-            );
-            loadBookings();
-        })
-        .catch((err) => {
-            console.log(err);
-            alert("Something went wrong");
-        });
+                alert(
+                    status === "CONFIRMED"
+                        ? "Booking confirmed"
+                        : "Booking rejected"
+                );
+                loadBookings();
+            })
+            .catch((err) => {
+                console.log(err);
+                alert("Something went wrong");
+            });
     }
 
 
@@ -73,7 +73,7 @@ export default function BookingRequests({ user, handleLogout }) {
                 )}
                 <div className="row g-3">
                     {bookings.map((booking) => (
-                        <div 
+                        <div
                             className="col-md-6"
                             key={booking.bookId}
                         >

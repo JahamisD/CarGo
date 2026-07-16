@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import API_URL from '../../apiUrl';
 import AdminNavbar from './AdminNavbar';
 
-export default function AddCar(props) {
-  const user = props.user;
+export default function AddCar({user, handleLogout}) {
+
   const navigate = useNavigate();
 
   const [brand, setBrand] = useState('');
@@ -17,36 +17,37 @@ export default function AddCar(props) {
   const [error, setError] = useState('');
 
   function submitForm(e) {
-    e.preventDefault();
-    setError('');
+  e.preventDefault();
+  setError('');
 
-    fetch(API_URL + "/cars", {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        ownerId: user.userId,
-        brand: brand,
-        model: model,
-        year: Number(year),
-        color: color,
-        plateNumber: plateNumber,
-        pricePerDay: Number(pricePerDay),
-        availability: availability
-      })
+  fetch(API_URL + "/cars", {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      ownerId: user.userId,
+      brand: brand,
+      model: model,
+      year: Number(year),
+      color: color,
+      plateNumber: plateNumber,
+      pricePerDay: Number(pricePerDay),
+      availability: availability
     })
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Something went wrong adding the car");
-        }
-        return res.json();
-      })
-      .then(() => {
-        navigate('/my-cars');
-      })
-      .catch((err) => {
-        setError(err.message);
-      });
-  }
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Something went wrong adding the car");
+      }
+      return res.json();
+    })
+    .then(() => {
+      alert("Car added successfully!");
+      navigate('/admin/cars');
+    })
+    .catch((err) => {
+      setError(err.message);
+    });
+}
 
   if (!user || user.role !== "ADMIN") {
     return (
