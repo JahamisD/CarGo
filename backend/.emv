@@ -1,0 +1,7 @@
+DATABASE_URL=jdbc:postgresql://aws-1-ap-southeast-2.pooler.supabase.com:5432/postgres
+DB_USERNAME=postgres.ltblurugipacmqnjzzzg
+DB_PASSWORD=TClxd4RQ664oVxAR
+DB_CLASSNAME=org.postgresql.Driver
+ADMIN_EMAIL=admin@gmail.com
+ADMIN_PASSWORD=admin
+FRONTEND_URL=http://localhost:8080
