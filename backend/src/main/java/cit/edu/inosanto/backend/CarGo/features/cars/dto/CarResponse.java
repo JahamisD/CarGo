@@ -1,9 +1,8 @@
-package cit.edu.inosanto.backend.CarGo.features.cars;
+package cit.edu.inosanto.backend.CarGo.features.cars.dto;
 
 import java.math.BigDecimal;
 
-public class CarRequest {
-    private Long carId;
+public class CarResponse {
     private String carName;
     private String carDetails;
     private String carBrand;
@@ -18,13 +17,7 @@ public class CarRequest {
         this.carPrice = carPrice;
     }
 
-    public Long getCarId() {
-        return carId;
-    }
 
-    public void setCarId(Long carId) {
-        this.carId = carId;
-    }
 
     public String getCarName() {
         return carName;
@@ -57,6 +50,4 @@ public class CarRequest {
     public void setCarOwner(String carOwner) {
         this.carOwner = carOwner;
     }
-
-
 }

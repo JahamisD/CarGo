@@ -1,4 +1,4 @@
-package cit.edu.inosanto.backend.CarGo.features.cars;
+package cit.edu.inosanto.backend.CarGo.features.cars.service;
 
 import cit.edu.inosanto.backend.CarGo.features.cars.repository.CarRepository;
 

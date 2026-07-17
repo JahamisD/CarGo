@@ -13,6 +13,7 @@ import CarManagement from './page/admin/CarManagement';
 
 import MyCars from './page/admin/MyCars';
 import AddCar from './page/admin/AddCar';
+import EditCar from './page/admin/EditCar';
 import AdminDashboard from './page/admin/AdminDashboard';
 import ProfileManagement from './page/admin/ProfileManagement';
 import BookingRequest from './page/admin/BookingRequests';
@@ -133,6 +134,22 @@ function AppContent({ user, handleLogin, handleLogout }) {
             user?.role === "ADMIN"
             ?
             <AddCar
+              user={user}
+              handleLogout={handleLogout}
+            />
+            :
+            <Navigate to="/cars"/>
+          }
+        />
+
+
+        {/* ADMIN EDIT CAR */}
+        <Route 
+          path="/admin/cars/edit/:carId" 
+          element={
+            user?.role === "ADMIN"
+            ?
+            <EditCar
               user={user}
               handleLogout={handleLogout}
             />

@@ -1,74 +1,90 @@
 package cit.edu.inosanto.backend.CarGo.features.cars.entity;
 
 import jakarta.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity
-@Table( name = "cars")
+@Table(name = "cars")
 public class Cars {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long carId;
-
-    private String carName;
-    private String carDetails;
-    private String carBrand;
-    private String carOwner;
-    private BigDecimal carPrice;
+    private String brand;
+    private String model;
+    private Integer year;
+    @Column(length = 1000)
+    private String details;
+    private BigDecimal pricePerDay;
+    private String imageUrl;
     private String plateNumber;
-
-    public BigDecimal getCarPrice() {
-        return carPrice;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setCarPrice(BigDecimal carPrice) {
-        this.carPrice = carPrice;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
-
 
     public Long getCarId() {
         return carId;
     }
 
-    public void setCarId(Long carId) { this.carId = carId;
+    public void setCarId(Long carId) {
+        this.carId = carId;
     }
 
-    public String getCarName() { return carName;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
     }
 
 
-    public String getPlateNumber() { return plateNumber;
+    public String getModel() {
+        return model;
     }
 
-    public void setPlateNumber(String plateNumber) { this.plateNumber = plateNumber;
+    public void setModel(String model) {
+        this.model = model;
     }
 
-    public void setCarName(String carName) {
-        this.carName = carName;
+
+    public Integer getYear() {
+        return year;
     }
 
-    public String getCarDetails() {
-        return carDetails;
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
-    public void setCarDetails(String carDetails) {
-        this.carDetails = carDetails;
+
+    public String getDetails() {
+        return details;
     }
 
-    public String getCarBrand() {
-        return carBrand;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
-    public void setCarBrand(String carBrand) {
-        this.carBrand = carBrand;
+
+    public BigDecimal getPricePerDay() {
+        return pricePerDay;
     }
 
-    public String getCarOwner() {
-        return carOwner;
+    public void setPricePerDay(BigDecimal pricePerDay) {
+        this.pricePerDay = pricePerDay;
     }
 
-    public void setCarOwner(String carOwner) {
-        this.carOwner = carOwner;
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }
