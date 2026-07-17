@@ -4,4 +4,4 @@ DB_PASSWORD=TClxd4RQ664oVxAR
 DB_CLASSNAME=org.postgresql.Driver
 ADMIN_EMAIL=admin@gmail.com
 ADMIN_PASSWORD=admin
-FRONTEND_URL=http://localhost:8080
+FRONTEND_URL=http://localhost:3000
