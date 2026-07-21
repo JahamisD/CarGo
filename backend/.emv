@@ -1,6 +1,0 @@
-PORT=8080
-DATABASE_URL=jdbc:postgresql://your-host:5432/your-database
-DB_USERNAME=your_username
-DB_PASSWORD=your_password
-DB_CLASSNAME=org.postgresql.Driver
-CORS_ALLOWED_ORIGINS=http://localhost:3000,https://cargo-frontend.onrender.com
