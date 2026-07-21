@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- matches Bootstrap's bg-primary navbar used in Navbar.js -->
+    <color name="cargo_primary">#0D6EFD</color>
+    <color name="cargo_primary_dark">#0B5ED7</color>
+    <color name="cargo_light">#FFFFFF</color>
+    <color name="cargo_background">#F5F6F8</color>
+    <color name="cargo_text_primary">#212529</color>
+    <color name="cargo_text_secondary">#6C757D</color>
+    <color name="cargo_danger">#DC3545</color>
+    <color name="cargo_danger_bg">#F8D7DA</color>
+    <color name="cargo_card_stroke">#E3E5E8</color>
 </resources>

@@ -1,9 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.MobileApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.CarGo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/cargo_primary</item>
+        <item name="colorPrimaryDark">@color/cargo_primary_dark</item>
+        <item name="colorAccent">@color/cargo_primary</item>
+        <item name="android:windowBackground">@color/cargo_background</item>
+        <item name="colorControlActivated">@color/cargo_primary</item>
     </style>
-
-    <style name="Theme.MobileApp" parent="Base.Theme.MobileApp" />
+    <style name="CarGo.Button" parent="Widget.MaterialComponents.Button">
+        <item name="backgroundTint">@color/cargo_primary</item>
+    </style>
+    <style name="CarGo.Button.Outlined" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/cargo_primary</item>
+        <item name="android:textColor">@color/cargo_primary</item>
+    </style>
 </resources>

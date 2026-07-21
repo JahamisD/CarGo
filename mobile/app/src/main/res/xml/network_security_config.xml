@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Allows plain http:// traffic. Needed while ApiConfig.BASE_URL points at a
+  local Spring Boot server (http://10.0.2.2:8080/api, a LAN IP, etc).
+  If you switch to a live https:// backend you can delete this file and the
+  android:networkSecurityConfig line in AndroidManifest.xml.
+-->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

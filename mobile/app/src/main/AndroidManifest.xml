@@ -1,36 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <application
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.MobileApp"
-        tools:targetApi="31">
-        <activity
-            android:name=".FrontPageActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.MobileApp">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <!--  needed to talk to the Spring Boot API  -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <application android:allowBackup="true" android:dataExtractionRules="@xml/data_extraction_rules" android:fullBackupContent="@xml/backup_rules" android:icon="@mipmap/ic_launcher" android:label="@string/app_name" android:roundIcon="@mipmap/ic_launcher_round" android:supportsRtl="true" android:theme="@style/Theme.CarGo" android:networkSecurityConfig="@xml/network_security_config" tools:targetApi="31">
+        <!--  Browse Cars is the landing screen, same as "/" -> "/cars" redirect in App.js  -->
+        <activity android:name=".ui.cars.CarsActivity" android:exported="true" android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.cars.CarDetailsActivity" android:exported="false" android:label="@string/title_car_details" android:parentActivityName=".ui.cars.CarsActivity"/>
+        <activity android:name=".ui.auth.LoginActivity" android:exported="false" android:label="@string/title_login"/>
+        <activity android:name=".ui.auth.RegisterActivity" android:exported="false" android:label="@string/title_register"/>
+        <activity android:name=".ui.booking.MyBookingsActivity" android:exported="false" android:label="@string/title_my_bookings"/>
     </application>
-
 </manifest>
