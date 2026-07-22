@@ -22,7 +22,7 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <TextView
+            <TextView android:textColor="@color/cargo_text_primary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/title_register"
@@ -52,7 +52,7 @@
                     android:orientation="vertical"
                     android:layout_marginEnd="8dp">
 
-                    <TextView
+                    <TextView android:textColor="@color/cargo_text_primary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/first_name"
@@ -75,7 +75,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <TextView
+                    <TextView android:textColor="@color/cargo_text_primary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/last_name"
@@ -94,7 +94,7 @@
 
             </LinearLayout>
 
-            <TextView
+            <TextView android:textColor="@color/cargo_text_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/email"
@@ -110,7 +110,7 @@
                 android:background="@drawable/bg_card"
                 android:layout_marginTop="4dp" />
 
-            <TextView
+            <TextView android:textColor="@color/cargo_text_primary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/password"

@@ -12,7 +12,7 @@
         android:background="@color/cargo_primary"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <TextView
+    <TextView android:textColor="@color/cargo_text_primary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/title_my_bookings"

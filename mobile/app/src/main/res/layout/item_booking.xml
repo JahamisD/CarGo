@@ -16,25 +16,25 @@
         android:textColor="@color/cargo_text_primary"
         android:layout_marginBottom="6dp" />
 
-    <TextView
+    <TextView android:textColor="@color/cargo_text_primary"
         android:id="@+id/textStart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp" />
 
-    <TextView
+    <TextView android:textColor="@color/cargo_text_primary"
         android:id="@+id/textEnd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp" />
 
-    <TextView
+    <TextView android:textColor="@color/cargo_text_primary"
         android:id="@+id/textStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp" />
 
-    <TextView
+    <TextView android:textColor="@color/cargo_text_primary"
         android:id="@+id/textPrice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

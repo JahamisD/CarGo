@@ -14,8 +14,6 @@ public class CarController {
 
     @Autowired
     private CarRepository carRepository;
-
-
     @PostMapping("/cars")
     public Cars createCar(@RequestBody Cars newCar) {
         return carRepository.save(newCar);
