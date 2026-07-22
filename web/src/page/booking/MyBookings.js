@@ -5,23 +5,6 @@ export default function MyBookings({ user }) {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const calculateTotalPrice = (booking) => {
-    const price = Number(booking.car?.carPrice);
-
-    if (!price) {
-      return 0;
-    }
-
-    const start = new Date(booking.bookingDateStart);
-    const end = new Date(booking.bookingDateEnd);
-
-    const days = Math.ceil(
-      (end - start) / (1000 * 60 * 60 * 24)
-    );
-
-    return days * price;
-  };
-
   useEffect(() => {
     console.log("User inside MyBookings:", user);
 
@@ -46,7 +29,6 @@ export default function MyBookings({ user }) {
 
   }, [user]);
 
-
   if (!user) {
     return (
       <div className="container py-4">
@@ -55,7 +37,6 @@ export default function MyBookings({ user }) {
     );
   }
 
-
   return (
     <div className="container py-4">
 
@@ -63,11 +44,9 @@ export default function MyBookings({ user }) {
 
       {loading && <p>Loading bookings...</p>}
 
-
       {!loading && bookings.length === 0 && (
         <p>No bookings found.</p>
       )}
-
 
       <div className="row g-3">
 
@@ -80,7 +59,7 @@ export default function MyBookings({ user }) {
               <div className="card-body">
 
                 <h5>
-                  {booking.car?.carBrand} {booking.car?.carName}
+                  {booking.car?.brand} {booking.car?.model}
                 </h5>
 
                 <p>
@@ -100,12 +79,12 @@ export default function MyBookings({ user }) {
 
                 <p>
                   <strong>Price per Day:</strong>{" "}
-                  ${booking.car?.carPrice ?? 0}
+                  ${booking.car?.pricePerDay ?? 0}
                 </p>
 
                 <p>
                   <strong>Total Price:</strong>{" "}
-                  ${calculateTotalPrice(booking)}
+                  ${booking.totalPrice ?? 0}
                 </p>
 
               </div>
