@@ -10,6 +10,7 @@ import Login from './page/auth/Login';
 import Register from './page/auth/Register';
 import MyBookings from './page/booking/MyBookings';
 import CarManagement from './page/admin/CarManagement';
+import Account from "./page/auth/Account";
 
 import MyCars from './page/admin/MyCars';
 import AddCar from './page/admin/AddCar';
@@ -19,15 +20,11 @@ import ProfileManagement from './page/admin/ProfileManagement';
 import BookingRequest from './page/admin/BookingRequests';
 
 function AppContent({ user, handleLogin, handleLogout }) {
-
   const location = useLocation();
-
   const isAdminPage = location.pathname.startsWith("/admin");
-
 
   return (
     <div className="App">
-
       {!isAdminPage && (
         <Navbar
           user={user}
@@ -67,12 +64,19 @@ function AppContent({ user, handleLogin, handleLogout }) {
           element={<MyBookings user={user} />} 
         />
 
+        <Route
+          path="/account"
+          element={
+            user
+            ? <Account user={user} />
+            : <Navigate to="/login"/>
+          }
+        />
 
         <Route 
           path="/my-cars" 
           element={<MyCars user={user} />} 
         />
-
 
         <Route 
           path="/my-cars/new" 
@@ -95,7 +99,6 @@ function AppContent({ user, handleLogin, handleLogout }) {
           }
         />
 
-
         {/* ADMIN PROFILE */}
         <Route 
           path="/admin/profile" 
@@ -110,7 +113,6 @@ function AppContent({ user, handleLogin, handleLogout }) {
             <Navigate to="/cars"/>
           }
         />
-
 
         {/* ADMIN CAR MANAGEMENT */}
         <Route 
@@ -142,7 +144,6 @@ function AppContent({ user, handleLogin, handleLogout }) {
           }
         />
 
-
         {/* ADMIN EDIT CAR */}
         <Route 
           path="/admin/cars/edit/:carId" 
@@ -157,7 +158,6 @@ function AppContent({ user, handleLogin, handleLogout }) {
             <Navigate to="/cars"/>
           }
         />
-
 
         {/* ADMIN BOOKING REQUESTS */}
         <Route 
@@ -177,28 +177,27 @@ function AppContent({ user, handleLogin, handleLogout }) {
   );
 }
 
-
-
 function App() {
 
   const savedUser = localStorage.getItem('user');
-
   const [user, setUser] = useState(
     savedUser ? JSON.parse(savedUser) : null
   );
-
 
   function handleLogin(userData) {
     setUser(userData);
     localStorage.setItem('user', JSON.stringify(userData));
   }
 
+  function handleUserUpdate(updatedUser) {
+    setUser(updatedUser);
+    localStorage.setItem("user", JSON.stringify(updatedUser));
+  }
 
   function handleLogout() {
     setUser(null);
     localStorage.removeItem('user');
   }
-
 
   return (
     <BrowserRouter>

@@ -54,6 +54,15 @@ export default function BookingRequests({ user, handleLogout }) {
     }
 
 
+    function calculateTotalDays(booking) {
+    const start = new Date(booking.bookingDateStart);
+    const end = new Date(booking.bookingDateEnd);
+
+    return Math.ceil(
+        (end - start) / (1000 * 60 * 60 * 24)
+    );
+    }
+
 
     return (
         <>
@@ -104,6 +113,14 @@ export default function BookingRequests({ user, handleLogout }) {
                                             End:
                                         </strong>{" "}
                                         {booking.bookingDateEnd}
+                                    </p>
+                                    <p>
+                                        <strong>Rental Duration:</strong>{" "}
+                                        {calculateTotalDays(booking)} day{calculateTotalDays(booking) > 1 ? "s" : ""}
+                                    </p>
+                                    <p>
+                                        <strong>Total Price:</strong>{" "}
+                                        ₱{booking.totalPrice}
                                     </p>
                                     <p>
                                         <strong>

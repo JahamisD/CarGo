@@ -1,32 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import API_URL from '../../apiUrl';
+import React, { useEffect, useState } from "react";
+import API_URL from "../../apiUrl";
 
 export default function MyBookings({ user }) {
-
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+  const calculateTotalPrice = (booking) => {
+    const price = Number(booking.car?.carPrice);
 
+    if (!price) {
+      return 0;
+    }
+
+    const start = new Date(booking.bookingDateStart);
+    const end = new Date(booking.bookingDateEnd);
+
+    const days = Math.ceil(
+      (end - start) / (1000 * 60 * 60 * 24)
+    );
+
+    return days * price;
+  };
+
+  useEffect(() => {
     console.log("User inside MyBookings:", user);
 
     if (!user) {
-        return;
+      setLoading(false);
+      return;
     }
 
     fetch(API_URL + "/bookings/user/" + user.userId)
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(JSON.stringify(data, null, 2));
 
-    setBookings(Array.isArray(data) ? data : []);
+        setBookings(Array.isArray(data) ? data : []);
 
-    setLoading(false);
-  })
-  .catch((err) => {
-    console.log(err);
-    setLoading(false);
-  });
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+      });
 
   }, [user]);
 
@@ -64,7 +80,7 @@ export default function MyBookings({ user }) {
               <div className="card-body">
 
                 <h5>
-                  {booking.car.carBrand} {booking.car.carName}
+                  {booking.car?.carBrand} {booking.car?.carName}
                 </h5>
 
                 <p>
@@ -83,8 +99,13 @@ export default function MyBookings({ user }) {
                 </p>
 
                 <p>
-                  <strong>Price:</strong>{" "}
-                  ${booking.car.carPrice}/day
+                  <strong>Price per Day:</strong>{" "}
+                  ${booking.car?.carPrice ?? 0}
+                </p>
+
+                <p>
+                  <strong>Total Price:</strong>{" "}
+                  ${calculateTotalPrice(booking)}
                 </p>
 
               </div>

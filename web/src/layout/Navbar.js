@@ -37,12 +37,21 @@ export default function Navbar(props) {
 
               {/* only show My Bookings if someone is logged in */}
               {user && (
-                <li className="nav-item">
-                  <Link className="nav-link" to="/my-bookings">My Bookings</Link>
-                </li>
-              )}
-            </ul>
+                  <>
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/my-bookings">
+                        My Bookings
+                      </Link>
+                    </li>
 
+                    <li className="nav-item">
+                      <Link className="nav-link" to="/account">
+                        My Account
+                      </Link>
+                    </li>
+                  </>
+                )}
+            </ul>
             {user ? (
               <div>
                 <span className="text-white me-2">Hi, {user.firstName}</span>
