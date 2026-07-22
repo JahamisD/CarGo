@@ -14,24 +14,37 @@ export default function Cars() {
   function fetchCars() {
     setLoading(true);
 
-    let url = API_URL + "/cars";
+    let url = API_URL + "/api/cars";
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        console.log("Cars API Response:", data);
+        console.log("Is array:", Array.isArray(data));
+
+        let carsList = [];
+
+        if (Array.isArray(data)) {
+          carsList = data;
+        } else if (Array.isArray(data.cars)) {
+          carsList = data.cars;
+        }
+
         if (brand) {
-          const filtered = data.filter((car) =>
+          const filtered = carsList.filter((car) =>
             car.brand.toLowerCase().includes(brand.toLowerCase())
           );
+
           setCars(filtered);
         } else {
-          setCars(data);
+          setCars(carsList);
         }
 
         setLoading(false);
       })
       .catch((err) => {
         console.log(err);
+        setCars([]);
         setLoading(false);
       });
   }
@@ -61,19 +74,17 @@ export default function Cars() {
         </form>
       </div>
 
-
       {loading && <p>Loading cars...</p>}
 
       {!loading && cars.length === 0 && (
         <p>No cars found.</p>
       )}
 
-
       <div className="row g-3">
 
-        {cars.map((car) => (
+        {Array.isArray(cars) && cars.map((car) => (
 
-          <div 
+          <div
             className="col-12 col-md-6 col-lg-4"
             key={car.carId}
           >
@@ -92,28 +103,23 @@ export default function Cars() {
                 />
               )}
 
-
               <div className="card-body">
 
                 <h5 className="card-title">
                   {car.brand} {car.model}
                 </h5>
 
-
                 <p className="card-text">
                   Year: {car.year}
                 </p>
-
 
                 <p className="card-text">
                   {car.details}
                 </p>
 
-
                 <p className="card-text fw-bold">
                   ${car.pricePerDay} / day
                 </p>
-
 
                 <Link
                   to={"/cars/" + car.carId}
