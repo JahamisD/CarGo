@@ -11,6 +11,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.math.BigDecimal;
+import java.time.temporal.ChronoUnit;
+
 
 import java.util.List;
 
@@ -40,6 +43,22 @@ public class BookingController {
         booking.setBookingDateStart(request.getStartDate());
         booking.setBookingDateEnd(request.getEndDate());
         booking.setStatus("PENDING");
+
+        long days = ChronoUnit.DAYS.between(
+                request.getStartDate(),
+                request.getEndDate()
+        );
+
+// Prevent zero or negative rentals
+        if (days <= 0) {
+            days = 1;
+        }
+
+        BigDecimal totalPrice =
+                car.getPricePerDay().multiply(BigDecimal.valueOf(days));
+
+        booking.setTotalPrice(totalPrice);
+
 
         return bookingRepository.save(booking);
     }
