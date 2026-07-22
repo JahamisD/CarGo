@@ -12,5 +12,5 @@ package com.example.mobileapp.network
  * Placeholder below - change it before building.
  */
 object ApiConfig {
-    const val BASE_URL = "http://10.0.2.2:8080/api" // TODO: replace with your real API URL
+    const val BASE_URL="https://cargo-p1in.onrender.com/api"
 }

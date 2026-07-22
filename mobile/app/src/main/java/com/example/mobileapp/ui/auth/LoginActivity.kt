@@ -18,7 +18,7 @@ import org.json.JSONObject
 /**
  * Kotlin port of page/auth/Login.js. Not a BaseActivity/toolbar-menu screen
  * since it's a standalone form, same as the React page renders without
- * needing the navbar's own menu items active on itself.
+ * needing the navbars own menu items active on itself.
  */
 class LoginActivity : AppCompatActivity() {
 
