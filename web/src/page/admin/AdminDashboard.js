@@ -11,7 +11,7 @@ export default function AdminDashboard({user, handleLogout}){
             />
 
             <div className="container mt-4">
-                <h1>Admin Dashboard Test</h1>
+                <h1>Admin Dashboard</h1>
 
                 <p>
                     Welcome, {user.firstName}
@@ -31,7 +31,6 @@ export default function AdminDashboard({user, handleLogout}){
                             </div>
                         </div>
                     </div>
-
 
                     <div className="col-md-4">
                         <div className="card shadow">
