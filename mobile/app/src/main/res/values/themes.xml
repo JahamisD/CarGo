@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.CarGo" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.CarGo" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/cargo_primary</item>
         <item name="colorPrimaryDark">@color/cargo_primary_dark</item>
         <item name="colorAccent">@color/cargo_primary</item>
@@ -8,6 +8,7 @@
         <item name="android:textColorPrimary">@color/cargo_text_primary</item>
         <item name="android:textColorSecondary">@color/cargo_text_secondary</item>
         <item name="android:textColor">@color/cargo_text_primary</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
     </style>
     <style name="CarGo.Button" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@color/cargo_primary</item>
